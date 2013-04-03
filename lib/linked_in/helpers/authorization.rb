@@ -26,8 +26,8 @@ module LinkedIn
       # use the verifier is the pin that LinkedIn gives users.
       def authorize_from_request(request_token, request_secret, verifier_or_pin)
         request_token = ::OAuth::RequestToken.new(consumer, request_token, request_secret)
-        access_token  = request_token.get_access_token(:oauth_verifier => verifier_or_pin)
-        @auth_token, @auth_secret = access_token.token, access_token.secret
+        @access_token  = request_token.get_access_token(:oauth_verifier => verifier_or_pin)
+        @auth_token, @auth_secret = @access_token.token, @access_token.secret
       end
 
       def access_token
